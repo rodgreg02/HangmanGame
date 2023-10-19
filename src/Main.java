@@ -9,7 +9,7 @@ public class Main{
         for (int i = 0; i < word.length(); i++) {
             charArray[i] = word.charAt(i);
         }
-        Render(charArray);
+        render(charArray);
 
     }
     //Used to pick a random word from the pre defined array of words
@@ -19,14 +19,14 @@ public class Main{
         return words[random.nextInt(0,9)];
     }
 
-    public static char[] Render(char[] wordArray){
+    public static char[] render(char[] wordArray, char a){
         char[] hiddenWord = new char[wordArray.length];
         for (int i = 0; i < wordArray.length; i++) {
             hiddenWord[i] = '_';
         }
+
         for (int i = 0; i < hiddenWord.length; i++) {
-            System.out.println(hiddenWord[i]);
-            System.out.println(wordArray[i]);
+            System.out.print(hiddenWord[i] + " ");
         }
         return null;
     }
