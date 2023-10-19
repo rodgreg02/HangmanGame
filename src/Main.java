@@ -19,7 +19,7 @@ public class Main{
         return words[random.nextInt(0,9)];
     }
 
-    public static char[] render(char[] wordArray, char a){
+    public static char[] render(char[] wordArray, char charOfPlayer){
         char[] hiddenWord = new char[wordArray.length];
         for (int i = 0; i < wordArray.length; i++) {
             hiddenWord[i] = '_';
@@ -27,6 +27,7 @@ public class Main{
 
         for (int i = 0; i < hiddenWord.length; i++) {
             System.out.print(hiddenWord[i] + " ");
+            System.out.println("O fábio tem orelhas");
         }
         return null;
     }
