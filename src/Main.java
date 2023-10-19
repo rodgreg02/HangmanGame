@@ -20,6 +20,7 @@ public class Main{
         Random random = new Random();
         return words[random.nextInt(0,10)];
     }
+
 //Holds major part of game logic and renders game board
     public static String render(char[] wordArray, String pickedWord){
         char[] hiddenWord = new char[wordArray.length];
@@ -27,6 +28,7 @@ public class Main{
         for (int i = 0; i < wordArray.length; i++) {
             hiddenWord[i] = '_';
         }
+
 
         while(!wordPicked) {
             for (int i = 0; i < hiddenWord.length; i++) {
@@ -58,6 +60,11 @@ public class Main{
                 }
             }
 
+
+
+        for (int i = 0; i < hiddenWord.length; i++) {
+            System.out.print(hiddenWord[i] + " ");
+            System.out.println("O fábio tem orelhas");
 
         }
         return pickedWord;}
