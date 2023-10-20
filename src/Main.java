@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -20,18 +21,23 @@ public class Main{
 //Holds major part of game logic and renders game board
     public static String render(String[] wordArray, String pickedWord) {
         String[] hiddenWord = new String[wordArray.length];
+
         boolean wordPicked = false;
+        int count = 0;
+
         for (int i = 0; i < wordArray.length; i++) {
             hiddenWord[i] = "_";
         }
 
+
+        System.out.println("Input your choice of one character ONLY: ");
 
         while (!wordPicked) {
             for (int i = 0; i < hiddenWord.length; i++) {
                 System.out.print(hiddenWord[i] + " ");
             }
 
-            System.out.println("Input your choice of one character ONLY:");
+            System.out.println();
             Scanner input = new Scanner(System.in);
             String userInput = input.nextLine();
             if (userInput.length() > 1) {
@@ -41,14 +47,20 @@ public class Main{
                 return wetWipe;
             }
 
-
             for (int i = 0; i < wordArray.length; i++) {
                 if (userInput.equals(wordArray[i])) {
                     hiddenWord[i] = userInput;
+                    count++;
                 }
             }
+
             if(!pickedWord.contains(userInput)){
-                System.out.println("");
+                System.out.println("Wrong letter!");
+            }
+
+            if(count == hiddenWord.length) {
+                System.out.println("NICE! You won!");
+                wordPicked = true;
             }
 
         }
