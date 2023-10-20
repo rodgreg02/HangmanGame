@@ -24,14 +24,14 @@ public class Main{
 
         boolean wordPicked = false;
         int count = 0;
-        int tries = 7;
+        int tries = 8;
 
         for (int i = 0; i < wordArray.length; i++) {
             hiddenWord[i] = "_";
         }
 
 
-        System.out.println("Input your choice of one character ONLY: ");
+        System.out.println("Input your choice of one character or try to guess the word: ");
 
         while (!wordPicked) {
             for (int i = 0; i < hiddenWord.length; i++) {
@@ -41,12 +41,12 @@ public class Main{
             System.out.println();
             Scanner input = new Scanner(System.in);
             String userInput = input.nextLine();
-            if (userInput.length() > 1) {
+            /*if (userInput.length() > 1) {
                 System.out.println("You absolute wet towel, can't you follow simple instructions?\n you'll hang for that.");
                 System.out.println("___\n  |\n  |\n  O \n (|)" + " \n /|");
                 String wetWipe = "You wetwipe";
                 return wetWipe;
-            }
+            }*/
 
             for (int i = 0; i < wordArray.length; i++) {
                 if (userInput.equals(wordArray[i])) {
@@ -55,10 +55,16 @@ public class Main{
                 }
             }
 
+            if(pickedWord.equals(userInput)) {
+                return "Nice! You found the word!";
+            }
+
             if(!pickedWord.contains(userInput)){
-                System.out.println("Wrong letter!");
                 tries--;
-                System.out.println("Tentativas: "+ tries);
+                if(tries!=0){
+                    System.out.println("Wrong letter!");
+                    System.out.println("Tentativas: "+ tries);
+                }
             }
 
             if(tries == 0) {
