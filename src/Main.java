@@ -56,7 +56,8 @@ public class Main{
             }
 
             if(pickedWord.equals(userInput)) {
-                return "Nice! You found the word!";
+                System.out.println("congrats, you found it");
+                return pickedWord;
             }
 
             if(!pickedWord.contains(userInput)){
@@ -68,7 +69,8 @@ public class Main{
             }
 
             if(tries == 0) {
-                return "You lost! Congrats!";
+                System.out.println("The word was "+pickedWord + " but nice try");
+                return "You lost! Congrats Flávio!";
             }
 
             if(count == hiddenWord.length) {
