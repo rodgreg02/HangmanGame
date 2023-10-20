@@ -24,6 +24,7 @@ public class Main{
 
         boolean wordPicked = false;
         int count = 0;
+        int tries = 7;
 
         for (int i = 0; i < wordArray.length; i++) {
             hiddenWord[i] = "_";
@@ -56,6 +57,12 @@ public class Main{
 
             if(!pickedWord.contains(userInput)){
                 System.out.println("Wrong letter!");
+                tries--;
+                System.out.println("Tentativas: "+ tries);
+            }
+
+            if(tries == 0) {
+                return "You lost! Congrats!";
             }
 
             if(count == hiddenWord.length) {
