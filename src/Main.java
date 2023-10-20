@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -5,11 +6,7 @@ import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
         String word = getRandomWord();
-        char[] charArray = new char[word.length()];
-        for (int i = 0; i < word.length(); i++) {
-
-          charArray[i]  = word.charAt(i);
-        }
+        String[] charArray = word.split("");
 
         String hiddenWord = render(charArray, word);
         System.out.println(hiddenWord);
@@ -22,50 +19,64 @@ public class Main{
     }
 
 //Holds major part of game logic and renders game board
-    public static String render(char[] wordArray, String pickedWord){
-        char[] hiddenWord = new char[wordArray.length];
+    public static String render(String[] wordArray, String pickedWord) {
+        String[] hiddenWord = new String[wordArray.length];
+
         boolean wordPicked = false;
+        int count = 0;
+        int tries = 8;
+
         for (int i = 0; i < wordArray.length; i++) {
-            hiddenWord[i] = '_';
+            hiddenWord[i] = "_";
         }
 
 
-        while(!wordPicked) {
+        System.out.println("Input your choice of one character or try to guess the word: ");
+
+        while (!wordPicked) {
             for (int i = 0; i < hiddenWord.length; i++) {
                 System.out.print(hiddenWord[i] + " ");
             }
 
-            System.out.println("Input your choice of one character ONLY:");
+            System.out.println();
             Scanner input = new Scanner(System.in);
             String userInput = input.nextLine();
-            if(userInput.length() > 1){
+            /*if (userInput.length() > 1) {
                 System.out.println("You absolute wet towel, can't you follow simple instructions?\n you'll hang for that.");
-                System.out.println("___\n  |\n  |\n  O \n (|)" +" \n /|");
+                System.out.println("___\n  |\n  |\n  O \n (|)" + " \n /|");
                 String wetWipe = "You wetwipe";
                 return wetWipe;
-            }
-
-
-
-
-
-            char pickedChar = userInput.charAt(0);
+            }*/
 
             for (int i = 0; i < wordArray.length; i++) {
-                if (pickedChar == (wordArray[i])){
-                    int indexOfLetter = i;
-                    hiddenWord[i] = pickedChar;
-                    continue;
-
+                if (userInput.equals(wordArray[i])) {
+                    hiddenWord[i] = userInput;
+                    count++;
                 }
             }
 
+            if(pickedWord.equals(userInput)) {
+                return "Nice! You found the word!";
+            }
 
+            if(!pickedWord.contains(userInput)){
+                tries--;
+                if(tries!=0){
+                    System.out.println("Wrong letter!");
+                    System.out.println("Tentativas: "+ tries);
+                }
+            }
 
-        for (int i = 0; i < hiddenWord.length; i++) {
-            System.out.print(hiddenWord[i] + " ");
-            System.out.println("O fábio tem orelhas");
+            if(tries == 0) {
+                return "You lost! Congrats!";
+            }
+
+            if(count == hiddenWord.length) {
+                System.out.println("NICE! You won!");
+                wordPicked = true;
+            }
 
         }
-        return pickedWord;}
+        return pickedWord;
+    }
 }
